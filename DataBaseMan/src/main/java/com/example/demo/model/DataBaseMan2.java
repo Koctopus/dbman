@@ -37,12 +37,12 @@ public class DataBaseMan2 {
 		this.name = name;
 	}
 	
-	public String getPassword() {
+	public String getComment() {
 		return comment;
 	}
 
-	public void setPassword(String password) {
-		this.comment = password;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	public String getFormula() {

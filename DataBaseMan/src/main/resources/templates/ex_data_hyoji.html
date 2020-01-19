@@ -9,7 +9,7 @@
 	<table>
     <tr th:each="data : ${exDataList}" th:object="${data}">
       <td th:text="*{id}"></td>
-      <td th:text="*{name}"></td>
+      <td th:text="*{ex_name}"></td>
       <td th:text="*{comment}"></td>
       <td th:text="*{formula}"></td>
     </tr>

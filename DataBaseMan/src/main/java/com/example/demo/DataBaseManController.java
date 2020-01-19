@@ -67,14 +67,14 @@ public class DataBaseManController{
 	
 	@RequestMapping(value="/print_userinfo")
 	public String hyoji(Model model) {
-		List<DataBaseMan> userInfoList = databasemanService.findAllWeatherData();
+		List<DataBaseMan> userInfoList = databasemanService.findAlluser_infoData();
  		model.addAttribute("userInfoList", userInfoList);
  		
 		return "hyoji";
 	}
 	
 	@RequestMapping(value="/edit", method = RequestMethod.GET)
-	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
+	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
 		return "edit";
 	}
 	
@@ -88,7 +88,7 @@ public class DataBaseManController{
 	
 	@RequestMapping(value="/print_exData")
 	public String ex_data_hyoji(Model model) {
-		List<DataBaseMan2> exDataList = databaseman2Service.findAllWeatherData();
+		List<DataBaseMan2> exDataList = databaseman2Service.findAllExData();
  		model.addAttribute("exDataList", exDataList);
  		
 		return "ex_data_hyoji";

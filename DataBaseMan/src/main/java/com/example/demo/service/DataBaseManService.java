@@ -20,7 +20,7 @@ public class DataBaseManService{
 	 * レコードを全件取得する。
 	 * @return
 	 */
-	public List<DataBaseMan> findAllWeatherData(){
+	public List<DataBaseMan> findAlluser_infoData(){
 		
 		return databasemanRepository.findAll();
 	}
