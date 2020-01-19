@@ -97,3 +97,4 @@ function openload(event)
 	let box=document.getElementById("formula_box");
 	box.innerHTML=formula;
 }
+$("#save-btn").submit()

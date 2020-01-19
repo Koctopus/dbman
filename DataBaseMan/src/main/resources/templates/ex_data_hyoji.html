@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>print_database</title>
+</head>
+<body>
+	<p>例題データ表示中</p>
+	<table>
+    <tr th:each="data : ${exDataList}" th:object="${data}">
+      <td th:text="*{id}"></td>
+      <td th:text="*{name}"></td>
+      <td th:text="*{comment}"></td>
+      <td th:text="*{formula}"></td>
+    </tr>
+  </table>
+</body>
+</html>

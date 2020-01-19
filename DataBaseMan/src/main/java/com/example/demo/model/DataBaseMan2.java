@@ -9,15 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_info")
-public class DataBaseMan {
+@Table(name="ex_data")
+public class DataBaseMan2 {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
     
-    private String password;
+    private String comment;
+    
+    private String formula;
     
 	public Integer getId() {
 		return id;
@@ -36,11 +38,20 @@ public class DataBaseMan {
 	}
 	
 	public String getPassword() {
-		return password;
+		return comment;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.comment = password;
 	}
+	
+	public String getFormula() {
+		return formula;
+	}
+
+	public void setFormula(String formula) {
+		this.formula = formula;
+	}
+	
 }
 

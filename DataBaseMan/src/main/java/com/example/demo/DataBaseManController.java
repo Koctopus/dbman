@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
+import com.example.demo.model.DataBaseMan2;
+import com.example.demo.service.DataBaseMan2Service;
 
 @Controller
 public class DataBaseManController{
 	
 	@Autowired
 	DataBaseManService databasemanService;
+	
+	@Autowired
+	DataBaseMan2Service databaseman2Service;
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -60,12 +65,33 @@ public class DataBaseManController{
 		return "register";
 	}
 	
-	@RequestMapping(value="/print")
+	@RequestMapping(value="/print_userinfo")
 	public String hyoji(Model model) {
 		List<DataBaseMan> userInfoList = databasemanService.findAllWeatherData();
  		model.addAttribute("userInfoList", userInfoList);
  		
 		return "hyoji";
+	}
+	
+	@RequestMapping(value="/edit", method = RequestMethod.GET)
+	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
+		return "edit";
+	}
+	
+	@RequestMapping(value="/edit", method = RequestMethod.POST)///registerFormAction
+	public String exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
+		
+		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
+        
+		return "edit";
+	}
+	
+	@RequestMapping(value="/print_exData")
+	public String ex_data_hyoji(Model model) {
+		List<DataBaseMan2> exDataList = databaseman2Service.findAllWeatherData();
+ 		model.addAttribute("exDataList", exDataList);
+ 		
+		return "ex_data_hyoji";
 	}
 	
 }

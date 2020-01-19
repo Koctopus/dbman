@@ -17,6 +17,17 @@ body{
 	width: 100%;
 }
 
+#register_form{
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	flex: 1;
+}
+
 header{
 	position: relative;
 
