@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,55 +15,42 @@ import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
 
 @Controller
-public class DentakuController{
+public class DataBaseManController {
 	
 	@Autowired
-	DataBaseManService databasemanService;
+	DataBaseManService weatherService;
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
-	@RequestMapping(value = "/index")
-	public String index(){
-		return "index";
-	}
-	
-	@RequestMapping(value = "/edit")
-	public String edit(){
-		return "edit";
-	}
-	
-	@RequestMapping(value = "/drop")
-	public String drop(){
-		return "drop";
-	}
-	
-	@RequestMapping(value = "/learn")
-	public String learn(){
-		return "learn";
-	}
-	
-	@RequestMapping(value = "/graph")
-	public String graph(){
-		return "graph";
-	}
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String yay(@RequestParam(value = "user_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
 		return "register";
 	}
-	
 	@RequestMapping(value="/", method = RequestMethod.POST)///registerFormAction
 	public String hello(@RequestParam(value = "user_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
 		
+	    //model.addAttribute("message", name);
+		
 		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
+		
+		model.addAttribute("hello", "User Informations."); // Hello World!の表示
+ 		
+		// JDBC
+		System.out.println("*** JDBC Start. ***");
+		String sql = "select * from user_info";
+		List<Map<String, Object>> sqlResultList = jdbcTemplate.queryForList(sql);
+		sqlResultList.forEach(s -> {
+				System.out.println(s);
+		});
+		System.out.println("*** JDBC End. ***");
         
 		return "register";
 	}
 	
 	@RequestMapping(value="/print")
 	public String hyoji(Model model) {
-		List<DataBaseMan> userInfoList = databasemanService.findAllWeatherData();
+		List<DataBaseMan> userInfoList = weatherService.findAllWeatherData();
  		model.addAttribute("userInfoList", userInfoList);
  		
 		return "hyoji";
