@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/drop.css" th:href="@{/css/drop.css}" rel="stylesheet"></link>
+ <meta charset="UTF-8" />
+ <title>test</title>
+</head>
+<body>
+ <div id="droparea" ondragover="search(event);" ondrop="droping(event)">画像をドラッグ＆ドロップ
+
+ </div><script src="/js/drop.js" th:src="@{/js/drop.js}"></script>
+ <img src="" id="thumb">
+</body>
+</html>

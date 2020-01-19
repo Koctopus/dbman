@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet"></link>
+	<title>
+		CS1_Edit
+	</title>
+</head>
+<body>
+	<header>
+		<div id="hed">
+			<button id="fileopen-btn" onclick='openload();'>OPEN</button>
+			<button id="save-btn" onclick='save();'>SAVE</button>
+			<button id="userinfo-btn">INFO</button>
+		</div>
+	</header>
+		<form method="post" id="parent">
+		<div id="left-side">
+			<div id="ex_name_tb">
+				<input spellcheck="false" type="text" name="ex_name">
+			</div>
+			<div id="circuit_image" ondragover="search(event);" ondrop="droping(event)">
+				<img src="" id="thumb" alt="画像をドラッグ＆ドロップ"  title="circuit">
+			</div>
+			<div id="comment">
+				<textarea spellcheck="false" name="com"></textarea>
+			</div>
+		</div>
+		<div id="right-side">
+			<div id="special_box">
+				sinとcosが使えます。logも使えます。複素数も使えます。ネイピア数(e)も使えます。<br>
+				いろいろできます。
+			</div>
+			
+			<div id="formula_box" class="0">
+				<div id="formula_text_0" class="textbox">
+					<div class="textarea">
+						<input type="text" id="formula">
+					</div>
+					<input type='button' id='formula_go_btn' value='+' onclick='formula_register();'>
+				</div>
+			</div>
+			<div id="element_box">
+				複素数はi、ネイピアの数=e、正弦=sin(a)、余弦=cos(a)、<br>自然対数=ln(a)、対数関数(10を底とする)=log(a)
+			</div>
+		</div>
+	</form>
+	<div id="a" class="none">
+		<input type="text" id="test" value="dsfgasdfasf,E=R*I,R=E/I,I=E/R">
+	</div>
+	<script src="/js/edit.js" th:src="@{/js/edit.js}"></script>
+</body>
+</html>
