@@ -25,7 +25,7 @@ public class DataBaseMan2Service{
 		return databaseman2Repository.findAll();
 	}
 	
-	public List<DataBaseMan2> findUserInfoListByName(String name){
+	public List<DataBaseMan2> findExDataListByName(String name){
 		
 		return databaseman2Repository.findByName(name);
 	}

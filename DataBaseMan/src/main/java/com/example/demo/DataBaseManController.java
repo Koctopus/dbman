@@ -91,6 +91,9 @@ public class DataBaseManController{
 		List<DataBaseMan2> exDataList = databaseman2Service.findAllExData();
  		model.addAttribute("exDataList", exDataList);
  		
+ 		List<DataBaseMan2> exDataId = databaseman2Service.findExDataListByName("Ex_2");
+	    model.addAttribute("exDataId", exDataId);
+ 		
 		return "ex_data_hyoji";
 	}
 	

@@ -10,6 +10,6 @@ import com.example.demo.model.DataBaseMan2;
 @Repository
 public interface DataBaseMan2Repository extends JpaRepository<DataBaseMan2, Integer> {
 	
-	List<DataBaseMan2> findByName(String name);
+	List<DataBaseMan2> findByName(String id);
 	
 }

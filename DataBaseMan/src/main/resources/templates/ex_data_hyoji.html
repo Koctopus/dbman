@@ -14,5 +14,14 @@
       <td th:text="*{formula}"></td>
     </tr>
   </table>
+  <p>Ex_2データ表示中</p>
+	<table>
+    <tr th:each="data : ${exDataId}" th:object="${data}">
+      <td th:text="*{id}"></td>
+      <td th:text="*{name}"></td>
+      <td th:text="*{comment}"></td>
+      <td th:text="*{formula}"></td>
+    </tr>
+  </table>
 </body>
 </html>
