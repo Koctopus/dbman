@@ -38,7 +38,7 @@ public class DataBaseManController {
  		
 		// JDBC
 		System.out.println("*** JDBC Start. ***");
-		String sql = "select * from weather";
+		String sql = "select * from user_info";
 		List<Map<String, Object>> sqlResultList = jdbcTemplate.queryForList(sql);
 		sqlResultList.forEach(s -> {
 				System.out.println(s);
