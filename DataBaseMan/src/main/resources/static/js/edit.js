@@ -98,3 +98,4 @@ function openload(event)
 	box.innerHTML=formula;
 }
 $("#save-btn").submit()
+$("#parent").submit()

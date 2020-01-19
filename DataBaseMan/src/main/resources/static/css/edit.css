@@ -17,14 +17,6 @@ body{
 	width: 100%;
 }
 
-#edit_form{
-	position: relative;
-
-	display: flex;
-	
-	flex: 1;
-}
-
 header{
 	position: relative;
 
