@@ -14,7 +14,7 @@ import com.example.demo.repository.DataBaseManRepository;
 public class DataBaseManService{
 	
 	@Autowired
-	DataBaseManRepository weatherRepository;
+	DataBaseManRepository databasemanRepository;
 	
 	/**
 	 * レコードを全件取得する。
@@ -22,11 +22,11 @@ public class DataBaseManService{
 	 */
 	public List<DataBaseMan> findAllWeatherData(){
 		
-		return weatherRepository.findAll();
+		return databasemanRepository.findAll();
 	}
 	
 	public List<DataBaseMan> findUserInfoListByName(String name){
 		
-		return weatherRepository.findByName(name);
+		return databasemanRepository.findByName(name);
 	}
 }
