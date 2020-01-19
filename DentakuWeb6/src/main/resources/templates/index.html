@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+ <meta charset="UTF-8"/>
+ <title>test</title>
+ </head>
+ <body>
+ <script src="/js/Formula.js" th:src="@{/js/Formula.js}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+ <p>式を入力してください</p>
+ <input type="text" id="Formula">
+ <input type="button" id="F_input" value="式の入力" onclick="add();">
+ <form id=F_div></form>
+ <form id=result></form>
+ </body>
+</html>
