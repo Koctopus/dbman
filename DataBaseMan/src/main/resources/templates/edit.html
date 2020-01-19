@@ -8,6 +8,7 @@
 	</title>
 </head>
 <body>
+	<form method="post" id="edit_form" name="ef" action="./edit">
 	<header>
 		<div id="hed">
 			<button id="fileopen-btn" onclick='openload();'>OPEN</button>
@@ -15,7 +16,7 @@
 			<button id="userinfo-btn">INFO</button>
 		</div>
 	</header>
-		<form method="post" id="parent" name="ef" action="./edit">
+		<div id="parent">
 		<div id="left-side">
 			<div id="ex_name_tb">
 				<input spellcheck="false" type="text" name="ex_name">
@@ -45,10 +46,11 @@
 				複素数はi、ネイピアの数=e、正弦=sin(a)、余弦=cos(a)、<br>自然対数=ln(a)、対数関数(10を底とする)=log(a)
 			</div>
 		</div>
-	</form>
+	</div>
 	<div id="a" class="none">
 		<input type="text" id="test" value="dsfgasdfasf,E=R*I,R=E/I,I=E/R">
 	</div>
 	<script src="/js/edit.js" th:src="@{/js/edit.js}"></script>
+	</form>
 </body>
 </html>
