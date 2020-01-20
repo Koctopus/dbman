@@ -79,7 +79,7 @@ public class DataBaseManController{
 	}
 	
 	@RequestMapping(value="/edit", method = RequestMethod.POST)///registerFormAction
-	public String exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
+	public String exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "formula_0", required = false) String formula, Model model) {
 		
 		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
         
