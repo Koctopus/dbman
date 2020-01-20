@@ -58,7 +58,8 @@ public class DataBaseManController{
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public void regi() {
+	public String regi(Model model) {
+		return "register";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
