@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet"></link>
@@ -8,11 +8,11 @@
 	</title>
 </head>
 <body>
-	<form method="post" id="edit_form" name="ef" action="./edit" onsubmit="return false;">
+	<form method="post" id="edit_form" name="ef" action="#" th:action="@{/confirm}" onsubmit="return false;">
 	<header>
 		<div id="hed">
 			<button id="fileopen-btn" onclick='openload();'>OPEN</button>
-			<button type="button" id="save-btn" onclick="submit();">SAVE</button>
+			<button type="submit" id="save-btn">SAVE</button>
 			<button id="userinfo-btn">INFO</button>
 		</div>
 	</header>
