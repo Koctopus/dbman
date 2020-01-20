@@ -58,7 +58,7 @@ public class DataBaseManController{
 	}
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public void upload(@PathVariable String filename, @RequestParam("fileData") MultipartFile multipartFile,String formula){
+    public void upload(@PathVariable String filename, MultipartFile multipartFile,String formula){
 		try {
 			
 			String[] text = formula.split(",",0);
