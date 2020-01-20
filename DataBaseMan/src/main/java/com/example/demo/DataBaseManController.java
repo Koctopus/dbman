@@ -132,6 +132,13 @@ public class DataBaseManController{
 	
 	//jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
         
+	@RequestMapping(value="/print")
+	public String hyoji(Model model) {
+		List<DataBaseMan> exDataList = databasemanService.findAlluser_infoData();
+ 		model.addAttribute("userInfoList", exDataList);
+ 		
+		return "hyoji";
+	}
 	
 	@RequestMapping(value="/print_exData")
 	public String ex_data_hyoji(Model model) {
