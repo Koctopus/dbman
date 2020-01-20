@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
@@ -66,33 +65,16 @@ public class DataBaseManController{
 		return "register";
 	}
 	
-	@RequestMapping(value="/print_userinfo")
-	public String hyoji(Model model) {
-		List<DataBaseMan> userInfoList = databasemanService.findAlluser_infoData();
- 		model.addAttribute("userInfoList", userInfoList);
- 		
-		return "hyoji";
-	}
-	
-	/*@RequestMapping(value="/edit", method = RequestMethod.GET)
+	@RequestMapping(value="/edit", method = RequestMethod.GET)
 	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
 		return "edit";
 	}
 	
 	@RequestMapping(value="/edit", method = RequestMethod.POST)///registerFormAction
-	public void exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
+	public String exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
 		
 		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
         
-	}*/
-	
-	@RequestMapping("/confirm")
-	public String confirm(@ModelAttribute("ex_name") String name
-						 ,@ModelAttribute("com") String comment
-						 ,@ModelAttribute("fml") String formula) {
-		
-		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
-		
 		return "edit";
 	}
 	
