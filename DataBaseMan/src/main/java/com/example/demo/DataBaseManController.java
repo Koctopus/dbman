@@ -57,6 +57,10 @@ public class DataBaseManController{
 		return "graph";
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public void regi() {
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String register(@PathVariable String filename, MultipartFile multipartFile,Model model,String name) {
 		
