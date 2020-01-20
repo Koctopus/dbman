@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet"></link>
@@ -8,11 +8,11 @@
 	</title>
 </head>
 <body>
-	<form method="post" id="edit_form" name="ef" action="./edit">
+	<form id="edit_form" method="post" enctype="multipart/form-data" th:action="@{/edit}">
 	<header>
 		<div id="hed">
 			<button id="fileopen-btn" onclick='openload();'>OPEN</button>
-			<button type="submit" id="save-btn" onclick='save();'>SAVE</button>
+			<input type="button" id="save-btn" value="SAVE" onclick='upload();'>
 			<button id="userinfo-btn">INFO</button>
 		</div>
 	</header>
@@ -37,7 +37,7 @@
 			<div id="formula_box" class="0">
 				<div id="formula_text_0" class="textbox">
 					<div class="textarea">
-						<input type="text" id="formula" name="fml">
+						<input type="text" id="formula">
 					</div>
 					<input type='button' id='formula_go_btn' value='+' onclick='formula_register();'>
 				</div>

@@ -97,4 +97,22 @@ function openload(event)
 	let box=document.getElementById("formula_box");
 	box.innerHTML=formula;
 }
-$("#edit_form").submit()
+function upload(event) {
+    $('#save-btn').click(function () {
+        var formData = new FormData($("#edit_form").get()[0]);
+        formData.append('formula',$("#formula").val());
+        
+        $.ajax({
+            type : "POST",
+            url  : "/upload",
+            data : formData,
+            processData : false,
+            contentType: false,
+            cache : false;
+        }).done(function(data) {        // Ajax通信が成功した時の処理
+            alert("アップロードが完了しました。");
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown) { // Ajax通信が失敗した時の処理
+            alert("アップロードが失敗しました。");
+        });
+    });
+}

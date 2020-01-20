@@ -79,8 +79,32 @@ header{
 
 	outline: none;
 }
+#hed input{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
+	box-sizing: border-box;
+
+	color: white;
+	text-decoration: none;
+
+	margin-left: 3px;
+	margin-right: 3px;
+
+	width: 10%;
+	height: 90%;
+
+	border-radius: 10px;
+
+	font-size: 100%;
+
+	outline: none;
+}
 #hed button:active{
+	transform: scale(0.95,0.95);
+}
+#hed input:active{
 	transform: scale(0.95,0.95);
 }
 

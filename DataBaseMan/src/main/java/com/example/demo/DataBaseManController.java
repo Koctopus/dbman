@@ -1,14 +1,19 @@
 package com.example.demo;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
@@ -52,31 +57,53 @@ public class DataBaseManController{
 		return "graph";
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String yay(@RequestParam(value = "user_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
-		return "register";
-	}
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public void upload(@PathVariable String filename, @RequestParam("fileData") MultipartFile multipartFile,String formula){
+		try {
+			
+			String[] text = formula.split(",",0);
+			
+            // アップロードファイルを保存
+            File uploadFile = new File(filename);
+            byte[] bytes = multipartFile.getBytes();
+            BufferedOutputStream uploadFileStream =
+                    new BufferedOutputStream(new FileOutputStream(uploadFile));
+            uploadFileStream.write(bytes);
+            uploadFileStream.close();
+
+            /*// ファイルを移動
+            String spa = FileSystems.getDefault().getSeparator();
+            String postgresPath = "C:\\Program Files\\PostgreSQL\\10\\data\\pdf";
+
+            Path sourcePath = Paths.get("." + spa + filename);
+            Path targetPath = Paths.get(postgresPath + spa + filename);
+            File targetFile = targetPath.toFile();
+            if (targetFile.exists()) targetFile.delete();
+            Files.move(sourcePath, targetPath);*/
+
+            // DBへ挿入
+            StringBuffer sql = new StringBuffer();
+            sql.append(" INSERT INTO ex_data (name,comment,formula) ")
+                .append(" VALUES ('")
+                .append("test_name")
+                .append("','")
+                .append("test_comment")
+                .append("','")
+                .append(text)
+                .append("')");
+            jdbcTemplate.execute(sql.toString());
+
+        } catch (Exception e) {
+            // 異常終了時の処理
+            e.printStackTrace();
+        } catch (Throwable t) {
+            // 異常終了時の処理
+            t.printStackTrace();
+        }
+    }
 	
-	@RequestMapping(value="/", method = RequestMethod.POST)///registerFormAction
-	public String hello(@RequestParam(value = "user_name", required = false) String name,@RequestParam(value = "user_pass", required = false) String password, Model model) {
-		
-		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
+	//jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
         
-		return "register";
-	}
-	
-	@RequestMapping(value="/edit", method = RequestMethod.GET)
-	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
-		return "edit";
-	}
-	
-	@RequestMapping(value="/edit", method = RequestMethod.POST)///registerFormAction
-	public String exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
-		
-		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
-        
-		return "edit";
-	}
 	
 	@RequestMapping(value="/print_exData")
 	public String ex_data_hyoji(Model model) {
