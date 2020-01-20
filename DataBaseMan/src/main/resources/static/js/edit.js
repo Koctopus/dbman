@@ -98,7 +98,7 @@ function openload(event)
 	box.innerHTML=formula;
 }
 function upload(event) {
-    $(function () {
+	
         var formData = new FormData($("#edit_form").get()[0]);
         formData.append('formula',$("#formula").val());
         
@@ -110,9 +110,8 @@ function upload(event) {
             contentType: false,
             cache : false;
         }).done(function(data) {        // Ajax通信が成功した時の処理
-            $('#result');
+            $('');
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) { // Ajax通信が失敗した時の処理
             alert("アップロードが失敗しました。");
         });
-    });
-}
+    }
