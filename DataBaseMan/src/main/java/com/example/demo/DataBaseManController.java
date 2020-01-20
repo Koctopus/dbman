@@ -82,18 +82,18 @@ public class DataBaseManController{
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String upload(@PathVariable String filename, MultipartFile multipartFile,String formula){
+    public String upload(MultipartFile multipartFile,String formula){
 		try {
 			
 			String[] text = formula.split(",",0);
 			
-            // アップロードファイルを保存
+            /*// アップロードファイルを保存
             File uploadFile = new File(filename);
             byte[] bytes = multipartFile.getBytes();
             BufferedOutputStream uploadFileStream =
                     new BufferedOutputStream(new FileOutputStream(uploadFile));
             uploadFileStream.write(bytes);
-            uploadFileStream.close();
+            uploadFileStream.close();*/
 
             /*// ファイルを移動
             String spa = FileSystems.getDefault().getSeparator();
