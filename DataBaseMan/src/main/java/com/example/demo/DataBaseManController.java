@@ -57,8 +57,27 @@ public class DataBaseManController{
 		return "graph";
 	}
 	
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public void upload(@PathVariable String filename, MultipartFile multipartFile,String formula){
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String register(@PathVariable String filename, MultipartFile multipartFile,Model model,String name) {
+		
+		String[] text = name.split(",",0);
+		
+		StringBuffer sql = new StringBuffer();
+        sql.append(" INSERT INTO user_info (name,password) ")
+            .append(" VALUES ('")
+            .append(filename)
+            .append("','")
+            .append("test_comment")
+            .append("','")
+            .append(text[0])
+            .append("')");
+        jdbcTemplate.execute(sql.toString());
+		
+		return "register";
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String upload(@PathVariable String filename, MultipartFile multipartFile,String formula){
 		try {
 			
 			String[] text = formula.split(",",0);
@@ -92,6 +111,8 @@ public class DataBaseManController{
                 .append(text[0])
                 .append("')");
             jdbcTemplate.execute(sql.toString());
+            
+            return "edit";
 
         } catch (Exception e) {
             // 異常終了時の処理
@@ -100,6 +121,8 @@ public class DataBaseManController{
             // 異常終了時の処理
             t.printStackTrace();
         }
+		
+		return "edit";
     }
 	
 	//jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
