@@ -88,8 +88,8 @@ public class DataBaseManController{
 	
 	@RequestMapping("/confirm")
 	public String confirm(@ModelAttribute("ex_name") String name
-						 ,@ModelAttribute("ex_name") String comment
-						 ,@ModelAttribute("ex_name") String formula) {
+						 ,@ModelAttribute("com") String comment
+						 ,@ModelAttribute("fml") String formula) {
 		
 		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
 		
