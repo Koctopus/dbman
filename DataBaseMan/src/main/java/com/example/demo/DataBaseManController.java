@@ -89,7 +89,7 @@ public class DataBaseManController{
                 .append("','")
                 .append("test_comment")
                 .append("','")
-                .append(text)
+                .append(text[0])
                 .append("')");
             jdbcTemplate.execute(sql.toString());
 
