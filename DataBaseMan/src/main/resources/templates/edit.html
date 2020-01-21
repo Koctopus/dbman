@@ -8,11 +8,11 @@
 	</title>
 </head>
 <body>
-	<form id="edit_form" method="post" enctype="multipart/form-data" th:action="@{/edit}">
+	<form method="GET" id="edit_form" name="ef" action="#" th:action="@{/confirm}">
 	<header>
 		<div id="hed">
 			<button id="fileopen-btn" onclick='openload();'>OPEN</button>
-			<input type="button" id="save-btn" value="SAV">
+			<button type="submit" id="save-btn">SAVE</button>
 			<button id="userinfo-btn">INFO</button>
 		</div>
 	</header>
@@ -37,7 +37,7 @@
 			<div id="formula_box" class="0">
 				<div id="formula_text_0" class="textbox">
 					<div class="textarea">
-						<input type="text" id="formula">
+						<input type="text" id="formula" name="fml">
 					</div>
 					<input type='button' id='formula_go_btn' value='+' onclick='formula_register();'>
 				</div>
@@ -52,6 +52,5 @@
 	</div>
 	<script src="/js/edit.js" th:src="@{/js/edit.js}"></script>
 	</form>
-	<span id="result"></span>
 </body>
 </html>

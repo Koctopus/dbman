@@ -6,29 +6,12 @@
 	<title>
 		CS1_Login
 	</title>
-	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript">
-    $(function () {
-    	var formData = new FormData($("#edit_form").get(0));
-        formData.append('name',$("#user_name").val());
-        $.ajax({
-            type : "POST",
-            url  : "/",
-            data : formData,
-            processData : false,
-            contentType: false,
-        }).done(function(data) {        // Ajax通信が成功した時の処理
-            alert("アップロードが完了しました。");
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) { // Ajax通信が失敗した時の処理
-            alert("アップロードが失敗しました。");
-        });
-    });
-    </script>
+	<script type="text/javascript" src="/js/edit.js"></script>
+	
 </head>
 <body>
-	<form method="post" name="rf" action="./" id="register_form">
+	<form enctype="multipart/form-data" method="post" action="./" id="register_form">
 			<div id="center">
-				<div id="text"></div>
 				<p id="name_txt">Name</p>
 
 				<div id="user_name_tb">
@@ -39,7 +22,7 @@
 				<div id="user_pass_tb">
 					<input spellcheck="false" type="text" name="user_pass" autocomplete="off">
 				</div>
-				<button type="submit" id="register_btn">REGISTER</button>
+				<button type="submit" id="register_btn" onclick="uploadfunction">REGISTER</button>
 			</div>
 	</form>
 </body>

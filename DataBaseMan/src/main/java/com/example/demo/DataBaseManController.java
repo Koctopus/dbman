@@ -1,19 +1,19 @@
 package com.example.demo;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
@@ -57,85 +57,58 @@ public class DataBaseManController{
 		return "graph";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String regi(Model model) {
+	@RequestMapping(value="/")
+	public String register() {
 		return "register";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String register(MultipartFile multipartFile,Model model,String name) {
+	@RequestMapping(path="/upload", method = RequestMethod.POST)
+	public void upload(HttpSession session, 
+            		   HttpServletResponse servletResponse, 
+            		   @RequestParam MultipartFile file,
+            		   @RequestParam(name="user_name")String name,
+            		   @RequestParam(name="user_pass")String password)
+	{
 		
-		String[] text = name.split(",",0);
+		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
 		
-		StringBuffer sql = new StringBuffer();
-        sql.append(" INSERT INTO user_info (name,password) ")
-            .append(" VALUES ('")
-            .append("tyler1")
-            .append("','")
-            .append("test_comment")
-            .append("','")
-            .append(text[0])
-            .append("')");
-        jdbcTemplate.execute(sql.toString());
-		
-		return "register";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String upload(MultipartFile multipartFile,String formula){
-		try {
-			
-			String[] text = formula.split(",",0);
-			
-            /*// アップロードファイルを保存
-            File uploadFile = new File(filename);
-            byte[] bytes = multipartFile.getBytes();
-            BufferedOutputStream uploadFileStream =
-                    new BufferedOutputStream(new FileOutputStream(uploadFile));
-            uploadFileStream.write(bytes);
-            uploadFileStream.close();*/
-
-            /*// ファイルを移動
-            String spa = FileSystems.getDefault().getSeparator();
-            String postgresPath = "C:\\Program Files\\PostgreSQL\\10\\data\\pdf";
-
-            Path sourcePath = Paths.get("." + spa + filename);
-            Path targetPath = Paths.get(postgresPath + spa + filename);
-            File targetFile = targetPath.toFile();
-            if (targetFile.exists()) targetFile.delete();
-            Files.move(sourcePath, targetPath);*/
-
-            // DBへ挿入
-            StringBuffer sql = new StringBuffer();
-            sql.append(" INSERT INTO ex_data (name,comment,formula) ")
-                .append(" VALUES ('")
-                .append("test_name")
-                .append("','")
-                .append("test_comment")
-                .append("','")
-                .append(text[0])
-                .append("')");
-            jdbcTemplate.execute(sql.toString());
-            
-            return "edit";
-
-        } catch (Exception e) {
-            // 異常終了時の処理
-            e.printStackTrace();
-        } catch (Throwable t) {
-            // 異常終了時の処理
-            t.printStackTrace();
-        }
+	@RequestMapping(value="/print_userinfo")
+	public String hyoji(Model model) {
+		List<DataBaseMan> userInfoList = databasemanService.findAlluser_infoData();
+ 		model.addAttribute("userInfoList", userInfoList);
+ 		
+		return "hyoji";
+	}
+	
+	/*@RequestMapping(value="/edit", method = RequestMethod.GET)
+	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
+		return "edit";
+	}
+	
+	@RequestMapping(value="/edit", method = RequestMethod.POST)///registerFormAction
+	public void exdatapost(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
+		
+		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
+        
+	}*/
+	
+	@RequestMapping("/confirm")
+	public String confirm(@ModelAttribute("ex_name") String name
+						 ,@ModelAttribute("com") String comment
+						 ,@ModelAttribute("fml") String formula) {
+		
+		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
 		
 		return "edit";
-    }
+	}
 	
-	//jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
-        
 	@RequestMapping(value="/print")
 	public String hyoji(Model model) {
-		List<DataBaseMan> exDataList = databasemanService.findAlluser_infoData();
- 		model.addAttribute("userInfoList", exDataList);
+		
+		List<DataBaseMan> userInfoList = databasemanService.findAlluser_infoData();
+ 		model.addAttribute("userInfoList", userInfoList);
  		
 		return "hyoji";
 	}
