@@ -6,11 +6,37 @@
 	<title>
 		CS1_Login
 	</title>
-	<script type="text/javascript" src="/js/edit.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		　　//送信ボタンクリック時の処理
+		　　$("#register_btn").click(function () {
+		　　　　//Formセレクタを取得
+		　　　　var form = $('#register_form').get(0);
+		　　　　//FormData オブジェクトを作成
+		　　　　var formData = new FormData( form );
+
+		　　　　//Ajax実行
+		　　　　$.ajax({
+		　　　　　url : "/upload",　　　//実行するサーブレット
+		　　　　　dataType: "html",
+		　　　　　type : "post",
+		　　　　　data : formData,　　// dataに FormDataを指定
+		　　　　　processData: false, 　　 //Ajaxがdataを整形しない指定
+		　　　　　contentType: false　　　//contentTypeもfalseに指定
+		　　　　}).done(function(resData) {
+				alert('success');
+		　　　　　//成功時の処理
+		　　　　}).fail(function(resData) {
+				alert('failed');
+		　　　　　//エラー時の処理
+		　　　　});
+		　　});
+		});
+</script>
 	
 </head>
 <body>
-	<form enctype="multipart/form-data" method="post" action="./" id="register_form">
+	<form enctype="multipart/form-data" method="post" action="./" id="register_form" onsubmit="return false;">
 			<div id="center">
 				<p id="name_txt">Name</p>
 
