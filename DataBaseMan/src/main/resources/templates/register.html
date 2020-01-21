@@ -24,37 +24,29 @@
 			</div>
 	</form>
 </body>
-	<script>
+	<script type="text/javascript">
     function clickEvent() {
-        alert('クリックされました');
+    	window.alert("clicked2");
+	　　　　//FormData オブジェクトを作成
+	　　　　var formData = new FormData($('#register_form').get(0));
+			formData.append("name",$("#user_name").val());
+			formData.append("password",$("#user_pass").val());
+			
+	　　　　//Ajax実行
+		$.ajax({
+			url : "/upload",　　　//実行するサーブレット
+			type : "post",
+			data : formData,　　// dataに FormDataを指定
+			processData: false,　　 //Ajaxがdataを整形しない指定
+			contentType: false,　　//contentTypeもfalseに指定
+			cache:false
+	　　　　}).done(function(data,status,jqxhr) {
+			window.alert("s");
+	　　　　　//成功時の処理
+	　　　　}).fail(function(data,status,jqxhr) {
+			window.alert("f");
+	　　　　　//エラー時の処理
+	　　　　});
     }
-	</script>
-<script type="text/javascript">
-	$(function(){
-		　　//送信ボタンクリック時の処理
-		　　$('#register_btn').click(function () {
-			window.alert("clicked2");
-		　　　　//FormData オブジェクトを作成
-		　　　　var formData = new FormData($('#register_form').get(0));
-				formData.append("name",$("#user_name").val());
-				formData.append("password",$("#user_pass").val());
-				
-		　　　　//Ajax実行
-			$.ajax({
-				url : "/upload",　　　//実行するサーブレット
-				type : "post",
-				data : formData,　　// dataに FormDataを指定
-				processData: false,　　 //Ajaxがdataを整形しない指定
-				contentType: false,　　//contentTypeもfalseに指定
-				cache:false
-		　　　　}).done(function(data,status,jqxhr) {
-				window.alert("s");
-		　　　　　//成功時の処理
-		　　　　}).fail(function(data,status,jqxhr) {
-				window.alert("f");
-		　　　　　//エラー時の処理
-		　　　　});
-		　　});
-		});
 	</script>
 </html>
