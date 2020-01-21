@@ -6,11 +6,39 @@
 	<title>
 		CS1_Login
 	</title>
-	<script type="text/javascript" src="/js/register.js"></script>
+	<script type="text/javascript" src="jquery-1.12.0.min.js">
+	$(function(){
+		　　//送信ボタンクリック時の処理
+		　　$("#register_btn").click(function () {
+		　　　　//Formセレクタを取得
+		　　　　var form = $('#register_form').get(0);
+		　　　　//FormData オブジェクトを作成
+		　　　　var formData = new FormData( form );
+				formData.append($('#user_name'));
+				formData.append($('#password'));
+				
+		　　　　//Ajax実行
+		　　　　$.ajax({
+		　　　　　url : "url",　　　//実行するサーブレット
+		　　　　　dataType: "html",
+		　　　　　type : "post",
+		　　　　　data : formData,　　// dataに FormDataを指定
+		　　　　　processData: false, 　　 //Ajaxがdataを整形しない指定
+		　　　　　contentType: false　　　//contentTypeもfalseに指定
+		　　　　}).done(function(data,status,jqxhr) {
+				alert("success");
+		　　　　　//成功時の処理
+		　　　　}).fail(function(data,status,jqxhr) {
+				alert("failed");
+		　　　　　//エラー時の処理
+		　　　　});
+		　　});
+		});
+	</script>
 	
 </head>
 <body>
-	<form enctype="multipart/form-data" method="post" action="./" id="register_form" onsubmit="return false;">
+	<form enctype="multipart/form-data" method="post" id="register_form" onsubmit="return false;">
 			<div id="center">
 				<p id="name_txt">Name</p>
 
@@ -22,7 +50,7 @@
 				<div id="user_pass_tb">
 					<input spellcheck="false" type="text" name="user_pass" autocomplete="off">
 				</div>
-				<input type="button" id="register_btn" value="REGISTER" onclick="upload();">
+				<input type="button" id="register_btn" value="REGISTER">
 			</div>
 	</form>
 </body>

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.model.DataBaseMan;
 import com.example.demo.service.DataBaseManService;
@@ -64,13 +63,12 @@ public class DataBaseManController{
 	
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public void upload(HttpSession session, 
-            		   HttpServletResponse servletResponse, 
+            		   HttpServletResponse response,
+            		   Model model,
+            		   UploadForm form,
             		   @RequestParam MultipartFile file,
-            		   @RequestParam(name="user_name")String na,
-            		   @RequestParam(name="user_pass")String pa,
             		   String name,
-            		   String password,
-            		   Model model)
+            		   String password)
 	{
 		
 		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
