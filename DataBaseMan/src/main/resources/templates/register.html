@@ -29,7 +29,7 @@
     function clickEvent() {
 
 	　　　　//FormData オブジェクトを作成
-	　　　　var formData = new FormData($('#register_form').get(0));
+	　　　　var formData = new FormData($('#register_form').get()[0]);
 		formData.append("name",$("#user_name").val());
 		formData.append("password",$("#user_pass").val());
 		
@@ -46,7 +46,7 @@
 			window.alert("s");
 	　　　　　//成功時の処理
 	　　　　}).fail(function(data,status,jqxhr) {
-			window.alert("f");
+			window.alert($("#user_pass").val());
 	　　　　　//エラー時の処理
 	　　　　});
     }
