@@ -13,12 +13,12 @@
 				<p id="name_txt">Name</p>
 
 				<div id="user_name_tb">
-					<input spellcheck="false" type="text" id="user_name" autocomplete="off">
+					<input spellcheck="false" type="text" name="name" id="user_name" autocomplete="off">
 				</div>
 
 				<p id="password_txt">Password</p>
 				<div id="user_pass_tb">
-					<input spellcheck="false" type="text" id="user_pass" autocomplete="off">
+					<input spellcheck="false" type="text" name="password" id="user_pass" autocomplete="off">
 				</div>
 				<input type="button" id="register_btn" value="REGISTER">
 			</div>
@@ -29,8 +29,8 @@
 	$("#register_btn").click(function (event) {
 	　　　　//FormData オブジェクトを作成
 	　　　　var formData = new FormData($('#register_form').get()[0]);
-		formData.append("name",$("#user_name").val());
-		formData.append("password",$("#user_pass").val());
+		//formData.append("name",$("#user_name").val());
+		//formData.append("password",$("#user_pass").val());
 		
 		window.alert("clicked2");
 	　　　　//Ajax実行
@@ -41,11 +41,14 @@
 			processData: false,　　 //Ajaxがdataを整形しない指定
 			contentType: false,　　//contentTypeもfalseに指定
 			cache:false
-	　　　　}).done(function(data) {
+	　　　　}).done(function(data, textStatus, jqXHR) {
 			window.alert("s");
 	　　　　　//成功時の処理
-	　　　　}).fail(function(e) {
+	　　　　}).fail(function(jqXHR, textStatus, errorThrown) {
 			window.alert($("#user_pass").val());
+			console.log(XMLHttpRequest.status);
+	        console.log(textStatus);
+	        console.log(errorThrown);
 	　　　　　//エラー時の処理
 	　　　　});
     });
