@@ -70,8 +70,10 @@ public class DataBaseManController{
             		   String name,
             		   String password)
 	{
+		String[] a=name.split(",",0);
+		String[] b=password.split(",",0);
 		
-		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
+		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", a,b);
 		
 	}
 	

@@ -11,11 +11,11 @@
 		　　//送信ボタンクリック時の処理
 		　　$("#register_btn").click(function () {
 		　　　　//Formセレクタを取得
-		　　　　var form = $('#register_form').get(0);
+		　　　　var form = $("#register_form").get(0);
 		　　　　//FormData オブジェクトを作成
 		　　　　var formData = new FormData( form );
-				formData.append("name",$('#user_name'));
-				formData.append("password",$('#password'));
+				formData.append("name",$("user_name"));
+				formData.append("password",$("#password"));
 				
 		　　　　//Ajax実行
 			$.ajax({
@@ -26,10 +26,10 @@
 				contentType: false　　　//contentTypeもfalseに指定
 				cache:
 		　　　　}).done(function(data,status,jqxhr) {
-				alert("success");
+				$("#result").text("success");
 		　　　　　//成功時の処理
 		　　　　}).fail(function(data,status,jqxhr) {
-				alert("failed");
+				$("#result").text("success");
 		　　　　　//エラー時の処理
 		　　　　});
 		　　});
@@ -52,6 +52,7 @@
 				</div>
 				<input type="button" id="register_btn" value="REGISTER">
 			</div>
+			<p id="result"></p>
 	</form>
 </body>
 </html>
