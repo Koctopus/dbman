@@ -73,7 +73,7 @@ public class DataBaseManController{
 		String[] a=name.split(",",0);
 		String[] b=password.split(",",0);
 		
-		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", a,b);
+		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", a[0],b[0]);
 		
 	}
 	
