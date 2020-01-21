@@ -2,11 +2,13 @@ function upload(){
 	var form = $('#register_form').get(0);
 　　　　//FormData オブジェクトを作成
 　　　　var formData = new FormData( form );
-
+	formData.append('name',$('#register_form').val());
+	formData.append('password',$('#register_form').val());
+	
 　　　　//Ajax実行
 　　　　$.ajax({
 　　　　　url : "/upload",　　　//実行するサーブレット
-　　　　　dataType: "html",
+　　　　　dataType: "json",
 　　　　　type : "post",
 　　　　　data : formData,　　// dataに FormDataを指定
 　　　　　processData: false, 　　 //Ajaxがdataを整形しない指定

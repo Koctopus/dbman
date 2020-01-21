@@ -66,8 +66,11 @@ public class DataBaseManController{
 	public void upload(HttpSession session, 
             		   HttpServletResponse servletResponse, 
             		   @RequestParam MultipartFile file,
-            		   @RequestParam(name="user_name")String name,
-            		   @RequestParam(name="user_pass")String password)
+            		   @RequestParam(name="user_name")String na,
+            		   @RequestParam(name="user_pass")String pa,
+            		   String name,
+            		   String password,
+            		   Model model)
 	{
 		
 		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name, password);
