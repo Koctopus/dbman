@@ -10,6 +10,7 @@
 	$(function(){
 		　　//送信ボタンクリック時の処理
 		　　$("#register_btn").click(function () {
+			alert("clicked");
 		　　　　//Formセレクタを取得
 		　　　　var form = $("#register_form").get(0);
 		　　　　//FormData オブジェクトを作成
@@ -50,7 +51,7 @@
 				<div id="user_pass_tb">
 					<input spellcheck="false" type="text" name="user_pass" autocomplete="off">
 				</div>
-				<input type="button" id="register_btn" value="REGISTER">
+				<input type="button" id="register_btn" value="REGISTE">
 			</div>
 			<p id="result"></p>
 	</form>
