@@ -61,7 +61,7 @@ public class DataBaseManController{
 		return "register";
 	}
 	
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
+	@RequestMapping(path="/upload", method = RequestMethod.POST)
 	public String upload(HttpSession session, 
             		   HttpServletResponse response,
             		   Model model,
