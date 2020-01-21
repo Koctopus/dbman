@@ -13,43 +13,40 @@
 				<p id="name_txt">Name</p>
 
 				<div id="user_name_tb">
-					<input spellcheck="false" type="text" name="user_name" autocomplete="off">
+					<input spellcheck="false" type="text" id="user_name" autocomplete="off">
 				</div>
 
 				<p id="password_txt">Password</p>
 				<div id="user_pass_tb">
-					<input spellcheck="false" type="text" name="user_pass" autocomplete="off">
+					<input spellcheck="false" type="text" id="user_pass" autocomplete="off">
 				</div>
 				<input type="button" id="register_btn" value="REGISTE">
 			</div>
-			<p id="result"></p>
 	</form>
 </body>
-<script type="text/javascript" src="jquery-1.12.0.min.js">
+<script type="text/javascript">
 	$(function(){
 		　　//送信ボタンクリック時の処理
 		　　$('#register_btn').click(function () {
 			alert("clicked");
-		　　　　//Formセレクタを取得
-		　　　　var form = $('#register_form').get(0);
 		　　　　//FormData オブジェクトを作成
-		　　　　var formData = new FormData( form );
-				formData.append("name",$("user_name").val());
-				formData.append("password",$("#password").val());
+		　　　　var formData = new FormData($('#register_form').get(0));
+				formData.append("name",$("#user_name").val());
+				formData.append("password",$("#user_pass").val());
 				
 		　　　　//Ajax実行
 			$.ajax({
 				url : "/upload",　　　//実行するサーブレット
 				type : "post",
 				data : formData,　　// dataに FormDataを指定
-				processData: false, 　　 //Ajaxがdataを整形しない指定
-				contentType: false　　　//contentTypeもfalseに指定
-				cache:
+				processData: false,　　 //Ajaxがdataを整形しない指定
+				contentType: false,　　//contentTypeもfalseに指定
+				cache:false
 		　　　　}).done(function(data,status,jqxhr) {
-				$("#result").text("success");
+				alert("s");
 		　　　　　//成功時の処理
 		　　　　}).fail(function(data,status,jqxhr) {
-				$("#result").text("success");
+				alert("f");
 		　　　　　//エラー時の処理
 		　　　　});
 		　　});
