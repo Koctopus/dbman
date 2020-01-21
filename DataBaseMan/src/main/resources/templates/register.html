@@ -6,33 +6,7 @@
 	<title>
 		CS1_Login
 	</title>
-	<script type="text/javascript">
-	$(function(){
-		　　//送信ボタンクリック時の処理
-		　　$("#register_btn").click(function () {
-		　　　　//Formセレクタを取得
-		　　　　var form = $('#register_form').get(0);
-		　　　　//FormData オブジェクトを作成
-		　　　　var formData = new FormData( form );
-
-		　　　　//Ajax実行
-		　　　　$.ajax({
-		　　　　　url : "/upload",　　　//実行するサーブレット
-		　　　　　dataType: "html",
-		　　　　　type : "post",
-		　　　　　data : formData,　　// dataに FormDataを指定
-		　　　　　processData: false, 　　 //Ajaxがdataを整形しない指定
-		　　　　　contentType: false　　　//contentTypeもfalseに指定
-		　　　　}).done(function(resData) {
-				alert('success');
-		　　　　　//成功時の処理
-		　　　　}).fail(function(resData) {
-				alert('failed');
-		　　　　　//エラー時の処理
-		　　　　});
-		　　});
-		});
-</script>
+	<script type="text/javascript" src="/js/register.js"></script>
 	
 </head>
 <body>
@@ -48,7 +22,7 @@
 				<div id="user_pass_tb">
 					<input spellcheck="false" type="text" name="user_pass" autocomplete="off">
 				</div>
-				<input type="button" id="register_btn" value="REGISTER">
+				<input type="button" id="register_btn" value="REGISTER" onclick="upload();">
 			</div>
 	</form>
 </body>
