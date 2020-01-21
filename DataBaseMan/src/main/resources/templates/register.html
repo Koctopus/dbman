@@ -29,8 +29,8 @@
 	$("#register_btn").click(function (event) {
 	　　　　//FormData オブジェクトを作成
 	　　　　var formData = new FormData($('#register_form').get()[0]);
-		//formData.append("name",$("#user_name").val());
-		//formData.append("password",$("#user_pass").val());
+		formData.append("name",$("#user_name").val());
+		formData.append("password",$("#user_pass").val());
 		
 		window.alert("clicked2");
 	　　　　//Ajax実行
@@ -44,11 +44,8 @@
 	　　　　}).done(function(data, textStatus, jqXHR) {
 			window.alert("s");
 	　　　　　//成功時の処理
-	　　　　}).fail(function(jqXHR, textStatus, errorThrown) {
-			window.alert(log(errorThrown));
-			console.log(XMLHttpRequest.status);
-	        console.log(textStatus);
-	        console.log(errorThrown);
+	　　　　}).fail(function(data, textStatus, jqXHR) {
+			window.alert("f");
 	　　　　　//エラー時の処理
 	　　　　});
     });

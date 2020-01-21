@@ -61,24 +61,6 @@ public class DataBaseManController{
 		return "register";
 	}
 	
-	@RequestMapping(path="/upload", method = RequestMethod.POST)
-	public String upload(HttpSession session, 
-            		   HttpServletResponse response,
-            		   Model model,
-            		   @RequestParam MultipartFile file,
-            		   @RequestParam("name") String name,
-            		   @RequestParam("password") String password)
-	{
-		
-		/*String[] a=na.split(",",0);
-		String[] b=password.split(",",0);*/
-		//System.out.println("------------BEFORE INSERT------------");
-		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name,password);
-		
-		return "hyoji";
-		
-	}
-	
 	/*@RequestMapping(value="/edit", method = RequestMethod.GET)
 	public String exdataget(@RequestParam(value = "ex_name", required = false) String name,@RequestParam(value = "com", required = false) String comment,@RequestParam(value = "fml", required = false) String formula, Model model) {
 		return "edit";
