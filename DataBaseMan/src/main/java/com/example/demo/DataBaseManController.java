@@ -62,7 +62,7 @@ public class DataBaseManController{
 		return "register";
 	}
 	
-	@RequestMapping(path="/upload", method = RequestMethod.POST)
+	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public void upload(HttpSession session, 
             		   HttpServletResponse servletResponse, 
             		   @RequestParam MultipartFile file,
@@ -85,16 +85,6 @@ public class DataBaseManController{
 		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
         
 	}*/
-	
-	@RequestMapping("/confirm")
-	public String confirm(@ModelAttribute("ex_name") String name
-						 ,@ModelAttribute("com") String comment
-						 ,@ModelAttribute("fml") String formula) {
-		
-		jdbcTemplate.update("insert into ex_data(name, comment, formula) VALUES (?, ?, ?)", name, comment, formula);
-		
-		return "edit";
-	}
 	
 	@RequestMapping(value="/print")
 	public String hyoji(Model model) {
