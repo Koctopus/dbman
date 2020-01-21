@@ -20,15 +20,20 @@
 				<div id="user_pass_tb">
 					<input spellcheck="false" type="text" id="user_pass" autocomplete="off">
 				</div>
-				<input type="button" id="register_btn" value="REGISTE">
+				<input type="button" id="register_btn" value="REGISTER" onclick="clickEvent()">
 			</div>
 	</form>
 </body>
+	<script>
+    function clickEvent() {
+        alert('クリックされました');
+    }
+	</script>
 <script type="text/javascript">
 	$(function(){
 		　　//送信ボタンクリック時の処理
 		　　$('#register_btn').click(function () {
-			alert("clicked");
+			window.alert("clicked2");
 		　　　　//FormData オブジェクトを作成
 		　　　　var formData = new FormData($('#register_form').get(0));
 				formData.append("name",$("#user_name").val());
@@ -43,10 +48,10 @@
 				contentType: false,　　//contentTypeもfalseに指定
 				cache:false
 		　　　　}).done(function(data,status,jqxhr) {
-				alert("s");
+				window.alert("s");
 		　　　　　//成功時の処理
 		　　　　}).fail(function(data,status,jqxhr) {
-				alert("f");
+				window.alert("f");
 		　　　　　//エラー時の処理
 		　　　　});
 		　　});
