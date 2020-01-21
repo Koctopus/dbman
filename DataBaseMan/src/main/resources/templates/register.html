@@ -14,17 +14,17 @@
 		　　　　var form = $('#register_form').get(0);
 		　　　　//FormData オブジェクトを作成
 		　　　　var formData = new FormData( form );
-				formData.append($('#user_name'));
-				formData.append($('#password'));
+				formData.append("name",$('#user_name'));
+				formData.append("password",$('#password'));
 				
 		　　　　//Ajax実行
-		　　　　$.ajax({
-		　　　　　url : "url",　　　//実行するサーブレット
-		　　　　　dataType: "html",
-		　　　　　type : "post",
-		　　　　　data : formData,　　// dataに FormDataを指定
-		　　　　　processData: false, 　　 //Ajaxがdataを整形しない指定
-		　　　　　contentType: false　　　//contentTypeもfalseに指定
+			$.ajax({
+				url : "/upload",　　　//実行するサーブレット
+				type : "post",
+				data : formData,　　// dataに FormDataを指定
+				processData: false, 　　 //Ajaxがdataを整形しない指定
+				contentType: false　　　//contentTypeもfalseに指定
+				cache:
 		　　　　}).done(function(data,status,jqxhr) {
 				alert("success");
 		　　　　　//成功時の処理
