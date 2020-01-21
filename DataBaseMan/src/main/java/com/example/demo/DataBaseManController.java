@@ -62,7 +62,7 @@ public class DataBaseManController{
 	}
 	
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public void upload(HttpSession session, 
+	public String upload(HttpSession session, 
             		   HttpServletResponse response,
             		   Model model,
             		   @RequestParam MultipartFile file,
@@ -72,8 +72,10 @@ public class DataBaseManController{
 		
 		/*String[] a=na.split(",",0);
 		String[] b=password.split(",",0);*/
-		System.out.println("------------BEFORE INSERT------------");
+		//System.out.println("------------BEFORE INSERT------------");
 		jdbcTemplate.update("insert into user_info(name, password) VALUES (?, ?)", name,password);
+		
+		return "hyoji";
 		
 	}
 	
